@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # 或者您的主分支名稱，例如 master
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -21,12 +21,15 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          cache-dependency-path: './pixel_quiz_game/package-lock.json'
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./pixel_quiz_game
 
       - name: Build
         run: npm run build
+        working-directory: ./pixel_quiz_game
         env:
           VITE_GOOGLE_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_SCRIPT_URL }}
           VITE_PASS_THRESHOLD: ${{ secrets.VITE_PASS_THRESHOLD }}
@@ -38,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './pixel_quiz_game/dist'
 
   deploy:
     environment:
