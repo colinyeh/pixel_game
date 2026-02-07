@@ -35,7 +35,7 @@ function App() {
     if (loading) {
         return (
             <div className="app-container">
-                <PixelCard title="Loading...">
+                <PixelCard title="Loading..." className="loading-card">
                     <div className="loading-spinner">GETTING READY...</div>
                 </PixelCard>
             </div>
@@ -59,7 +59,7 @@ function App() {
                 <div className="screen-home">
                     <h1>PIXEL QUIZ</h1>
                     <div className="intro-avatar">
-                        <Avatar seed={inputID || 'guest'} size={120} />
+                        <Avatar seed={inputID || 'guest'} size={120} className="avatar-intro" />
                     </div>
                     <PixelCard className="login-card" title="IDENTIFICATION">
                         <input
@@ -90,7 +90,7 @@ function App() {
 
                     <div className="boss-container">
                         {/* Boss Avatar changes per question */}
-                        <Avatar seed={`boss-${currentQuestion.id}`} size={150} />
+                        <Avatar seed={`boss-${currentQuestion.id}`} size={150} className="avatar-boss" />
                         <div className="boss-speech-bubble">
                             {currentQuestion.question}
                         </div>

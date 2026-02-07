@@ -7,8 +7,21 @@
     max-width: 600px;
     margin: 0 auto;
     min-height: 100vh;
-    padding: 20px;
+    padding: 16px;
     box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Loading Screen */
+.loading-card {
+    width: 100%;
+    max-width: 500px;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Press Start 2P', cursive;
 }
 
 /* Home Screen */
@@ -35,15 +48,19 @@
 }
 
 .pixel-input {
-    width: 90%;
+    width: 100%;
+    max-width: 300px;
     padding: 12px;
     margin-bottom: 16px;
     font-family: 'Press Start 2P', cursive;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border: 4px solid #000;
     background: white;
+    color: #003366;
+    /* Dark Blue */
     text-align: center;
     outline: none;
+    box-sizing: border-box;
 }
 
 .pixel-input:focus {
@@ -51,7 +68,8 @@
 }
 
 .start-btn {
-    width: 90%;
+    width: 100%;
+    max-width: 300px;
     animation: blink 1s infinite alternate;
 }
 
@@ -92,7 +110,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
 }
 
 .boss-speech-bubble {
@@ -163,20 +181,48 @@
 
 /* RWD for Mobile */
 @media (max-width: 480px) {
+    .app-container {
+        padding: 10px;
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+
     .options-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
     }
 
     .option-btn {
-        height: 60px;
-        font-size: 1rem;
+        height: 50px;
+        font-size: 1rem !important;
     }
 
     .boss-speech-bubble {
         font-size: 1rem;
+        margin-top: 8px;
+        padding: 10px;
+    }
+
+    .boss-container {
+        margin-bottom: 8px;
+    }
+
+    .intro-avatar {
+        margin: 10px 0;
     }
 
     h1 {
         font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    .avatar-intro {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .avatar-boss {
+        width: 100px !important;
+        height: 100px !important;
     }
 }

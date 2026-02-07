@@ -22,8 +22,8 @@
 body {
     margin: 0;
     display: flex;
-    place-items: center;
-    min-width: 320px;
+    justify-content: center;
+    min-width: 100%;
     min-height: 100vh;
     background-color: #202020;
     background-image:
@@ -44,4 +44,10 @@ h1 {
 button {
     border-radius: 0;
     /* Reset default button styles for pixel art compliance */
+}
+
+#root {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
