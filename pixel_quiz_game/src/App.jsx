@@ -16,10 +16,12 @@ function App() {
         error,
         startGame,
         submitAnswer,
-        resetGame
+        resetGame,
+        userAnswers
     } = useGame();
 
     const [inputID, setInputID] = useState('');
+    const [showReview, setShowReview] = useState(false);
 
     const handleStart = () => {
         if (inputID.trim()) {
@@ -30,6 +32,7 @@ function App() {
     const handleRestart = () => {
         resetGame();
         setInputID('');
+        setShowReview(false);
     };
 
     if (loading) {
@@ -128,7 +131,33 @@ function App() {
                                     : "FAIL. CONTINUE?"}
                             </p>
 
+
                             <PixelButton onClick={handleRestart} variant="success">PLAY AGAIN</PixelButton>
+                            <PixelButton
+                                onClick={() => setShowReview(!showReview)}
+                                variant="secondary"
+                                style={{ marginTop: '10px' }}
+                            >
+                                {showReview ? "HIDE REVIEW" : "REVIEW ANSWERS"}
+                            </PixelButton>
+
+                            {showReview && (
+                                <div className="review-list">
+                                    {userAnswers.map((ans, idx) => (
+                                        <div key={idx} className={`review-item ${ans.isCorrect ? 'correct' : 'incorrect'}`}>
+                                            <div className="review-q">{idx + 1}. {ans.question}</div>
+                                            <div className="review-a">
+                                                <span className="answer-label">YOURS:</span> {ans.userAnswer}
+                                            </div>
+                                            {!ans.isCorrect && (
+                                                <div className="review-a">
+                                                    <span className="answer-label">CORRECT:</span> {ans.correctAnswer}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </PixelCard>
                 </div>

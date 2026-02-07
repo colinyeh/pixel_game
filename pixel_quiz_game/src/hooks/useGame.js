@@ -9,6 +9,7 @@ export const useGame = () => {
     const [userId, setUserId] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [userAnswers, setUserAnswers] = useState([]); // Array of { question, userAnswer, correctAnswer, isCorrect }
 
     const PASS_THRESHOLD = Number(import.meta.env.VITE_PASS_THRESHOLD) || 3;
     const QUESTION_COUNT = Number(import.meta.env.VITE_QUESTION_COUNT) || 5;
@@ -26,6 +27,7 @@ export const useGame = () => {
                 setGameState('playing');
                 setCurrentQuestionIndex(0);
                 setScore(0);
+                setUserAnswers([]);
             } else {
                 setError('No questions found.');
                 setGameState('error');
@@ -45,6 +47,15 @@ export const useGame = () => {
         if (isCorrect) {
             setScore(prev => prev + 1);
         }
+
+        const answerData = {
+            question: currentQuestion.question,
+            userAnswer: selectedOption,
+            correctAnswer: currentQuestion.answer,
+            isCorrect: isCorrect
+        };
+
+        setUserAnswers(prev => [...prev, answerData]);
 
         // Move to next or finish
         if (currentQuestionIndex + 1 < questions.length) {
@@ -76,6 +87,7 @@ export const useGame = () => {
         setScore(0);
         setCurrentQuestionIndex(0);
         setUserId('');
+        setUserAnswers([]);
     };
 
     return {
@@ -89,6 +101,7 @@ export const useGame = () => {
         startGame,
         submitAnswer,
         resetGame,
+        userAnswers,
         currentQuestion: questions[currentQuestionIndex]
     };
 };
