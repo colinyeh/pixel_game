@@ -1,0 +1,27 @@
+.pixel-card {
+    position: relative;
+    background: var(--pixel-bg, #fff);
+    padding: 2px;
+    /* Inner padding for border logic */
+    box-shadow:
+        -4px 0 0 0 black,
+        4px 0 0 0 black,
+        0 -4px 0 0 black,
+        0 4px 0 0 black;
+    margin: 8px;
+    color: black;
+}
+
+.pixel-card-title {
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.pixel-card-content {
+    padding: 16px;
+}
