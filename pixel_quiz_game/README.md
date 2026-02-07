@@ -1,4 +1,4 @@
-# 🎮 Pixel Quiz Game (像素風格益智遊戲)
+# 🎮 Pixel Quiz Game (像素風格益智遊戲) · 🚀 Deployment Active
 
 這是一個充滿復古 8-bit 風格的像素益智遊戲，結合了 **React 前端** 與 **Google Sheets 後端**。
 
