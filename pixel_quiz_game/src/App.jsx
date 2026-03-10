@@ -68,7 +68,7 @@ function App() {
                         <input
                             type="text"
                             className="pixel-input"
-                            placeholder="ENTER PLAYER ID"
+                            placeholder="ENTER MOBILE #"
                             value={inputID}
                             onChange={(e) => setInputID(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleStart()}
