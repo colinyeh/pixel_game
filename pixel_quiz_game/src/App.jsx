@@ -91,12 +91,12 @@ function App() {
                         <span>SCORE: {score}00s</span>
                     </div>
 
-                    <div className="boss-container">
-                        {/* Boss Avatar changes per question */}
-                        <Avatar seed={`boss-${currentQuestion.id}`} size={150} className="avatar-boss" />
-                        <div className="boss-speech-bubble">
-                            {currentQuestion.question}
-                        </div>
+                    <div className="question-container">
+                        <PixelCard className="question-card" title={`QUESTION`}>
+                            <div className="question-text">
+                                {currentQuestion.question}
+                            </div>
+                        </PixelCard>
                     </div>
 
                     <div className="options-grid">
@@ -116,48 +116,42 @@ function App() {
 
             {gameState === 'finished' && (
                 <div className="screen-result">
-                    <PixelCard title="MISSION REPORT">
-                        <div className="result-stats">
-                            <h2>FINAL SCORE</h2>
-                            <div className="score-display">{score} / {questions.length}</div>
+                    <PixelCard title="MISSION REPORT" className="report-card">
+                        <div className="result-layout">
+                            <div className="result-stats">
+                                <h2>FINAL SCORE</h2>
+                                <div className="score-display">{score} / {questions.length}</div>
 
-                            <div className="result-avatar">
-                                <Avatar seed={inputID} size={100} />
+                                <div className="result-avatar">
+                                    <Avatar seed={inputID} size={60} />
+                                </div>
+
+                                <p className="result-message">
+                                    {score >= (Number(import.meta.env.VITE_PASS_THRESHOLD) || 3)
+                                        ? "PASS! YOU'RE A LEGEND."
+                                        : "FAIL. CONTINUE?"}
+                                </p>
+
+                                <PixelButton onClick={handleRestart} variant="success" className="play-again-btn">
+                                    PLAY AGAIN
+                                </PixelButton>
                             </div>
 
-                            <p>
-                                {score >= (Number(import.meta.env.VITE_PASS_THRESHOLD) || 3)
-                                    ? "PASS! YOU'RE A LEGEND."
-                                    : "FAIL. CONTINUE?"}
-                            </p>
-
-
-                            <PixelButton onClick={handleRestart} variant="success">PLAY AGAIN</PixelButton>
-                            <PixelButton
-                                onClick={() => setShowReview(!showReview)}
-                                variant="secondary"
-                                style={{ marginTop: '10px' }}
-                            >
-                                {showReview ? "HIDE REVIEW" : "REVIEW ANSWERS"}
-                            </PixelButton>
-
-                            {showReview && (
-                                <div className="review-list">
-                                    {userAnswers.map((ans, idx) => (
-                                        <div key={idx} className={`review-item ${ans.isCorrect ? 'correct' : 'incorrect'}`}>
-                                            <div className="review-q">{idx + 1}. {ans.question}</div>
-                                            <div className="review-a">
-                                                <span className="answer-label">YOURS:</span> {ans.userAnswer}
-                                            </div>
-                                            {!ans.isCorrect && (
-                                                <div className="review-a">
-                                                    <span className="answer-label">CORRECT:</span> {ans.correctAnswer}
-                                                </div>
-                                            )}
+                            <div className="review-list">
+                                {userAnswers.map((ans, idx) => (
+                                    <div key={idx} className={`review-item ${ans.isCorrect ? 'correct' : 'incorrect'}`}>
+                                        <div className="review-q">{idx + 1}. {ans.question}</div>
+                                        <div className="review-a">
+                                            <span className="answer-label">YOURS:</span> {ans.userAnswer}
                                         </div>
-                                    ))}
-                                </div>
-                            )}
+                                        {!ans.isCorrect && (
+                                            <div className="review-a">
+                                                <span className="answer-label">CORRECT:</span> {ans.correctAnswer}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </PixelCard>
                 </div>

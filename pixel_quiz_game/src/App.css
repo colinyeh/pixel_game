@@ -106,40 +106,26 @@
     box-sizing: border-box;
 }
 
-.boss-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 12px;
+/* Question Layout */
+.question-container {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.boss-speech-bubble {
-    background: #fff;
-    border: 4px solid #000;
-    padding: 16px;
-    color: #000;
-    margin-top: 16px;
+.question-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.question-text {
     font-size: 1.2rem;
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 900;
-    position: relative;
-    width: 100%;
-    max-width: 500px;
     text-align: center;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    padding: 10px;
     box-sizing: border-box;
-}
-
-/* Speech bubble tail */
-.boss-speech-bubble:after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    margin-left: -10px;
-    border-width: 10px;
-    border-style: solid;
-    border-color: transparent transparent #000 transparent;
+    line-height: 1.5;
 }
 
 .options-grid {
@@ -163,29 +149,82 @@
 }
 
 /* Result Screen */
+/* Result Screen Layout */
 .screen-result {
-    text-align: center;
     width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.report-card {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    /* Fit within viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+.pixel-card-content {
+    /* Set flex context so layout can fill available height */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.result-layout {
+    display: flex;
+    flex-direction: row;
+    /* side-by-side on desktop */
+    height: 100%;
+    gap: 16px;
+    overflow: hidden;
+    flex: 1;
+    /* take available space */
+}
+
+.result-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
 }
 
 .score-display {
-    font-size: 3rem;
-    margin: 20px 0;
+    font-size: 2.5rem;
+    margin: 10px 0;
     color: #ffd700;
     text-shadow: 4px 4px #000;
 }
 
 .result-avatar {
-    margin: 20px 0;
+    margin: 10px 0;
+}
+
+.result-message {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.play-again-btn {
+    margin-top: 16px;
 }
 
 /* Review Screen */
 .review-list {
-    max-height: 400px;
+    flex: 1.5;
     overflow-y: auto;
-    margin: 20px 0;
+    margin: 0;
+    /* padding-right helps when scrollbar cuts into text */
     padding-right: 10px;
     text-align: left;
+    height: 100%;
 }
 
 /* Custom scrollbar for review list */
@@ -259,14 +298,13 @@
         font-size: 1rem !important;
     }
 
-    .boss-speech-bubble {
+    .question-text {
         font-size: 1rem;
-        margin-top: 8px;
-        padding: 10px;
+        padding: 5px;
     }
 
-    .boss-container {
-        margin-bottom: 8px;
+    .question-container {
+        margin-bottom: 12px;
     }
 
     .intro-avatar {
@@ -283,8 +321,59 @@
         height: 80px !important;
     }
 
-    .avatar-boss {
-        width: 100px !important;
-        height: 100px !important;
+    /* Result layout mobile */
+    .result-layout {
+        flex-direction: column;
+        /* stack on mobile */
+    }
+
+    .result-stats {
+        flex: none;
+        /* Don't grow */
+    }
+
+    .review-list {
+        flex: 1;
+        /* Take remaining space */
+        min-height: 0;
+        /* Important for flex child with overflow */
+    }
+
+    .report-card {
+        max-height: 85vh;
+        /* fill most of screen on mobile */
+    }
+
+    .score-display {
+        font-size: 1.5rem;
+        margin: 5px 0;
+    }
+
+    .result-stats h2 {
+        font-size: 1.2rem;
+        margin: 5px 0;
+    }
+
+    .result-message {
+        margin: 5px 0;
+    }
+
+    .review-item {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+
+    .review-q {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .review-a {
+        font-size: 0.8rem;
+    }
+
+    .play-again-btn {
+        margin-top: 8px;
+        margin-bottom: 8px;
     }
 }

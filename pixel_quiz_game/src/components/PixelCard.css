@@ -20,6 +20,13 @@
     font-size: 1.2rem;
     margin-bottom: 8px;
     text-transform: uppercase;
+    word-break: break-word; /* Prevents overflow */
+}
+
+@media (max-width: 400px) {
+    .pixel-card-title {
+        font-size: 0.9rem;
+    }
 }
 
 .pixel-card-content {
