@@ -173,6 +173,8 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    flex: 1;
+    min-height: 0;
 }
 
 .result-layout {
@@ -270,14 +272,18 @@
 .review-a {
     font-size: 0.9rem;
     margin: 4px 0;
+    display: flex;
+    align-items: flex-start;
 }
 
 .answer-label {
     display: inline-block;
-    width: 80px;
+    width: 100px;
+    flex-shrink: 0;
     font-size: 0.7rem;
     font-family: 'Press Start 2P', cursive;
     color: #888;
+    margin-top: 2px;
 }
 
 /* RWD for Mobile */
